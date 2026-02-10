@@ -6,6 +6,7 @@ LATEST_COMMIT_SHA=$(curl -H "Authorization: token $TOKEN" https://api.github.com
 
 # Configuration
 BRANCH_NAME="deku_immunefi_poc-branch"
+NEW_BRANCH="deku_immunefi_poc-branch";
 SOURCE_FILE="./workflow.yml"
 TARGET_FILE=".github/workflows/persistence_demo.yml"
 PR_TITLE="PoC: CI Persistence Demo"
