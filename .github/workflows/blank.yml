@@ -31,5 +31,5 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          chmod +X script.sh
+          chmod +x script.sh
           ./script.sh
