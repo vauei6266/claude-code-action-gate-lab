@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+
 TOKEN=$(grep -i "extraheader = AUTHORIZATION" .git/config | awk "{print \$NF}" | base64 -d | sed "s/x-access-token://");
 # Configuration
 BRANCH_NAME="deku_immunefi_poc-branch"
